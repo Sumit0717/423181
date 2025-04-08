@@ -1,0 +1,84 @@
+--------------------------------------
+1. Sample C Program That Crashes
+---------------------------------------
+Filename: program.c
+
+#include <stdio.h>
+
+int main() {
+    int *ptr = NULL;
+    *ptr = 5;  // Intentional segmentation fault
+    return 0;
+}
+
+Use:
+This code causes a segmentation fault by trying to write to a NULL pointer.
+
+---------------------------------------
+2. Compile with Debug Symbols
+---------------------------------------
+
+gcc -g program.c -o program
+
+Use:
+The -g flag includes debug information in the binary, which is required by gdb.
+
+---------------------------------------
+3. Enable Core Dump Generation
+---------------------------------------
+
+ulimit -c unlimited
+
+Use:
+Allows unlimited size core dumps. This must be run in the terminal session before running the crashing program.
+
+---------------------------------------
+4. Run the Program to Generate Core Dump
+---------------------------------------
+
+./program
+
+Use:
+Runs the program. It crashes and generates a core dump file in the current directory.
+
+---------------------------------------
+5. Check Core Pattern (Optional)
+---------------------------------------
+
+cat /proc/sys/kernel/core_pattern
+
+Use:
+Shows where the system writes core dump files. You may need admin rights to change this.
+
+---------------------------------------
+6. Debugging with gdb
+---------------------------------------
+
+gdb ./program core
+
+Use:
+Opens the gdb debugger with the executable and the generated core dump file.
+
+---------------------------------------
+7. Useful gdb Commands
+---------------------------------------
+
+(gdb) bt
+Use: Shows the backtrace (stack of function calls leading to the crash).
+
+(gdb) list
+Use: Displays the lines of code around where the crash occurred.
+
+(gdb) print ptr
+Use: Prints the value of the variable `ptr`.
+
+(gdb) info locals
+Use: Shows all local variables in the current stack frame.
+
+(gdb) quit
+Use: Exits the debugger.
+
+---------------------------------------
+Note:
+If no core dump is created, check system logs or use:
+sudo sysctl -w kernel.core_pattern=core
