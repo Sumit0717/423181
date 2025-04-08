@@ -1,0 +1,56 @@
+# ----------------------------------------
+# APT Example (Debian/Ubuntu)
+# ----------------------------------------
+
+# Step 1: Update the package list
+sudo apt update
+
+# Step 2: Install gdb
+sudo apt install gdb
+
+# Step 3: Verify installation
+gdb --version
+
+# Step 4: Remove gdb
+sudo apt remove gdb
+
+# Step 5: Check if gdb is removed
+dpkg -l | grep gdb
+
+# ----------------------------------------
+# DPKG Example (Manually installing .deb)
+# ----------------------------------------
+
+# Step 1: Download a .deb file for gdb (example URL)
+wget http://ftp.us.debian.org/debian/pool/main/g/gdb/gdb_12.1-3_amd64.deb
+
+# Step 2: Install it using dpkg
+sudo dpkg -i gdb_12.1-3_amd64.deb
+
+# Step 3: Fix missing dependencies if any
+sudo apt --fix-broken install
+
+# Step 4: Remove the package
+sudo dpkg -r gdb
+
+# Step 5: Verify removal
+dpkg -l | grep gdb
+
+# ----------------------------------------
+# RPM Example (Red Hat/CentOS/Fedora)
+# ----------------------------------------
+
+# Step 1: Download a gdb rpm file
+wget http://mirror.centos.org/centos/7/os/x86_64/Packages/gdb-7.6.1-115.el7.x86_64.rpm
+
+# Step 2: Install the rpm package
+sudo rpm -ivh gdb-7.6.1-115.el7.x86_64.rpm
+
+# Step 3: Verify installation
+gdb --version
+
+# Step 4: Remove gdb
+sudo rpm -e gdb
+
+# Step 5: Check if gdb is removed
+rpm -q gdb
