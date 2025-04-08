@@ -1,0 +1,48 @@
+# Title: File Pattern Matching & Quoting in Unix Shell
+
+# Question 1:
+# List all files in the current directory that start with the letter a.
+ls a*
+
+# Question 2:
+# List all files in the current directory with a .txt extension.
+ls *.txt
+
+# Question 3:
+# Find all files in the current directory whose names have exactly five characters.
+ls ????? 
+
+# Question 4:
+# List files in the current directory that start with any letter between b and e.
+ls [b-e]*
+
+# Question 5:
+# List files ending with .log where the second character is a number (e.g., a1.log).
+ls ?[0-9].log
+
+# Question 6:
+# List all files that start with 'data' followed by a single character.
+ls data?
+
+# Question 7:
+# Find files containing both "file" and "report" in any order.
+ls *file*report* *report*file* 2>/dev/null
+
+# Question 8:
+# Create a file with name "hello world" and list it using quotes.
+touch "hello world"
+ls "hello world"
+
+# Question 9:
+# Echo "I love $HOME" with variable expansion and literal
+echo "I love $HOME"    # Expands $HOME
+echo 'I love $HOME'    # Treats $HOME as literal
+
+# Question 10:
+# Create a file named file\with\slashes and list it using backslashes
+touch "file\\with\\slashes"
+ls "file\\with\\slashes"
+
+# Question 11:
+# Print * as a literal character
+echo "*"
