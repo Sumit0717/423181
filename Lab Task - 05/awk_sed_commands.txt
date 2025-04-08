@@ -1,0 +1,34 @@
+# 1. Extract only ERROR messages with timestamps from log file
+awk '$2 == "ERROR" {print $1, $4}' logfile.txt
+
+# 2. Compute average of each subject from tab-separated CSV
+awk -F'\t' 'NR>1 {math+=$2; sci+=$3; eng+=$4; count++}
+END {print "Math Avg:", math/count; print "Science Avg:", sci/count; print "English Avg:", eng/count}' marks.csv
+
+# 3. Count occurrences of each IP in a server log
+awk '{ip[$1]++} END {for (i in ip) print i, ip[i]}' serverlog.txt
+
+# 4. Swap the first and last words in each line
+sed -E 's/^([^ ]+) (.*) ([^ ]+)$/\3 \2 \1/' words.txt
+
+# 5. Remove consecutive duplicate words
+sed -E 's/\b([a-zA-Z]+) \1\b/\1/g' dupwords.txt
+
+# 6. Mask usernames in email addresses
+sed -E 's/^[^@]+/*****/' emails.txt
+
+# 7. Find and print the most frequent word and its count
+tr -s ' ' '\n' < file.txt | tr -d '[:punct:]' | tr '[:upper:]' '[:lower:]' | \
+awk '{count[$1]++} END {for (w in count) if (count[w]>max) {max=count[w]; word=w} print word, max}'
+
+# 8. Extract unique lines (case-sensitive and case-insensitive)
+# Case-insensitive
+sort -f file.txt | uniq -i
+# Case-sensitive
+sort file.txt | uniq
+
+# 9. Reverse the order of words in each line
+awk '{for(i=NF; i>0; i--) printf "%s ", $i; print ""}' file.txt
+
+# 10. Print the longest line and its length
+awk '{if (length > max) {max = length; longest = $0}} END {print "Length:", max; print "Line:", longest}' file.txt
