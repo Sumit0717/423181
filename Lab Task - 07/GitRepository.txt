@@ -1,0 +1,44 @@
+# ```bash
+mkdir /tmp/cvsrepo
+cvs -d /tmp/cvsrepo init
+```
+
+### Step 2: Set environment variable
+```bash
+export CVSROOT=/tmp/cvsrepo
+```
+
+### Step 3: Create a project and import
+```bash
+mkdir cvs_project
+cd cvs_project
+echo "This is CVS project" > file.txt
+cd ..
+cvs import -m "Initial import" cvs_project cvs start
+```
+
+### Step 4: Checkout the project
+```bash
+cvs checkout cvs_project
+cd cvs_project
+```
+
+### Step 5: Edit, commit, and create branches
+```bash
+echo "Edit on main" >> file.txt
+cvs commit -m "Edit on main"
+
+# Create branch
+cvs tag -b BRANCH1
+cvs update -r BRANCH1
+echo "Changes on BRANCH1" >> file.txt
+cvs commit -m "Changes on branch1"
+```
+
+### Step 6: Merge back to main
+```bash
+# Go back to main trunk
+cvs update -A
+cvs update -j BRANCH1
+cvs commit -m "Merged BRANCH1 to main"
+```
