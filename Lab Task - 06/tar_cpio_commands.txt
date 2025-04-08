@@ -1,0 +1,30 @@
+# tar command
+# 1. Create a gzip compressed archive
+tar -czf myarchive.tar.gz myfoldertar
+
+# 2. Create a gzip compressed archive from temp folder
+tar -czf myarchive.tar.gz temp/
+
+# 3. Create a .tar archive
+tar cvf archive_name.tar temp/
+
+# 4. Create a gzip-compressed .tar.gz archive
+tar cvzf archive_name.tar.gz temp/
+
+# 5. Create a bzip2-compressed archive
+tar cvfj archive_name.tar.bz2 temp/
+
+# 6. Extract from different archive formats
+tar xvf archive_name.tar
+tar xvzf archive_name.tar.gz
+tar xvfj archive_name.tar.bz2
+
+# 7. List the contents of an archive
+tar tvf archive_name.tar
+
+# cpio command
+# Example 1: Create a cpio archive
+ls | cpio -ov > /tmp/object.cpio
+
+# Example 2: Extract from the cpio archive
+cpio -idv < /tmp/object.cpio
