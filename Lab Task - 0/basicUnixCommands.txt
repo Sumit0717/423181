@@ -1,0 +1,29 @@
+# 1. Create a directory
+mkdir my_directory
+
+# 2. Create a subdirectory in the directory created
+mkdir my_directory/my_subdir
+
+# 3. Change your current directory to the subdirectory
+cd my_directory/my_subdir
+
+# 4. Display the calendar for the current month
+cal
+
+# 5. Get a directory listing of the parent directory
+ls ..
+
+# 6. How many users were logged onto your system?
+who | wc -l
+
+# 7. Display your name in the form of a banner
+banner "Sumit"
+
+# 8. Display the name of device name of your terminal
+tty
+
+# 9. Move to the root directory
+cd /
+
+# 10. Change your directory to the directory exercises
+cd /home/exercises
